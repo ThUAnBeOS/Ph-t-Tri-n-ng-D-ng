@@ -1,0 +1,148 @@
+<-------------------------ĐĂNG NHẬP----------------------->
+
+<style> .row { text-align: center; position: relative; }
+.boxtitle {
+    display: inline-block;
+}
+
+.underline {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid black;
+}
+
+.spacer {
+    margin-top: 10px;
+}
+</style>
+TÀI KHOẢN
+<form action="index.php?act=dangnhap" method="post">
+    <div class="row mb10">
+         <input type="text"name="user" value="Tên đăng nhập"><br>
+    </div>
+    
+    <div class="row mb10">
+        <input type="password" id="lname" name="pass" value="Mật khẩu"><br><br     
+    </div>
+    <div class="row mb10">
+        <input type="submit" value="Đăng ký" name="dangnhap" id="">
+        <a href="index.php?act=quenmk">Quên mật khẩu?</a>
+    </div>
+<----------------------------ĐĂNG KÝ------------------------>
+
+<style> .row { text-align: center; position: relative; }
+.boxtitle {
+    display: inline-block;
+}
+
+.underline {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid black;
+}
+
+.spacer {
+    margin-top: 10px;
+}
+</style>
+ĐĂNG KÝ TÀI KHOẢN
+<form action="index.php?act=dangky" method="post">
+    <div class="row mb10">
+         <input type="email"name="email" value="Email "><br>
+    </div>
+    
+
+    <div class="row mb10">
+         <input type="text"name="user" value="Username "><br>
+    </div>
+    
+
+    <div class="row mb10">
+         <input type="password"name="address" value="Password  "><br>
+    </div>
+    
+
+    <div class="row mb10">
+         <input type="text"name="pass" value="Address   "><br>
+    </div>
+    
+
+    <div class="row mb10">
+         <input type="number"name="tel" value="Phone Number   "><br>
+    </div>
+                    <input type="number" name="role" value="0" disabled hidden>
+              
+                <div class="row mb">
+                    <input type="submit" value="Đăng ký" name="dangky">
+                    <input type="reset" value="Nhập lại">
+                </div>
+<---------------------------QUÊN TÀI KHOẢN----------------------->
+
+<style> .row { text-align: center; position: relative; }
+.boxtitle {
+    display: inline-block;
+}
+
+.underline {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid black;
+}
+
+.spacer {
+    margin-top: 10px;
+}
+</style>
+QUÊN TÀI KHOẢN
+<form action="index.php?act=quenmk" method="post">
+    <div class="row mb10">
+         <input type="email"name="guiemail" value="Email"><br>
+    </div>
+    
+    <div class="row mb10">
+       <input type="submit" value="Xác nhận" name="guiemail">
+                    <input type="reset" value="Nhập lại">
+    </div>
+<-----------------------PHP--------------------->
+//ĐĂNG KÝ
+if(isset($_POST['dangky'])&&($_POST['dangky'])){
+$email = $_POST['email'];
+$user = $_POST['user'];
+$pass = $_POST['pass'];
+$address = $_POST['address'];
+$tel = $_POST['tel'];
+$role = 0;
+insert_taikhoan($email,$user,$pass,$address,$tel,$role);
+$thongbao="Chúc mừng bạn đã đăng ký thành công !";
+}
+// ĐĂNG NHẬP
+if(isset($_POST['dangnhap']) && ($_POST['dangnhap'])){
+$user = $_POST['user'];
+$pass = $_POST['pass'];
+$checkuser = checkuser($user,$pass);
+if(is_array($checkuser)){
+$_SESSION['user'] = $checkuser;
+// $thongbao = "Bạn đã đăng nhập thành công !";
+header('location: index.php');
+}else{
+$thongbao = "Tài khoản không tồn tại !";
+}
+}
+// QUÊN TK
+if(isset($_POST['guiemail']) && ($_POST['guiemail'])){
+
+                $email = $_POST['email'];
+
+                $checkemail = checkemail($email);
+                if(is_array($checkemail)){
+                    $thongbao = "Mật khẩu của bạn là: ".$checkemail['pass'];
+                }else{
+                    $thongbao = "Email không tồn tại !";
+                }
+            }
