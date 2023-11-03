@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .success-message {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>THÊM TÀI KHOẢN</h1>
+
+    <?php
+    // Xử lý form khi người dùng gửi dữ liệu
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $employee_code = $_POST["employee_code"];
+        $employee_name = $_POST["employee_name"];
+        $address = $_POST["address"];
+        $email = $_POST["email"];
+        $phone_number = $_POST["phone_number"];
+        $job_title = $_POST["job_title"];
+
+       function pdo_get_connection(){
+    $dburl = "mysql:host=localhost;dbname=truc;charset=utf8";
+    $username = 'root';
+    $password = '';
+
+    $conn = new PDO($dburl, $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $conn;
+}
+
+        // Kiểm tra xem mã nhân viên đã tồn tại chưa
+        $check_query = "SELECT * FROM employees WHERE employee_code = ?";
+        $check_stmt = $db->prepare($check_query);
+        $check_stmt->bind_param("s", $employee_code);
+        $check_stmt->execute();
+        $check_result = $check_stmt->get_result();
+
+        if ($check_result->num_rows > 0) {
+            echo "Mã nhân viên đã tồn tại. Vui lòng chọn mã khác.";
+        } else {
+            // Thêm tài khoản nhân viên vào cơ sở dữ liệu
+            $insert_query = "INSERT INTO employees (employee_code, employee_name, address, email, phone_number, job_title) VALUES (?, ?, ?, ?, ?, ?)";
+            $insert_stmt = $db->prepare($insert_query);
+            $insert_stmt->bind_param("ssssss", $employee_code, $employee_name, $address, $email, $phone_number, $job_title);
+
+            if ($insert_stmt->execute()) {
+                echo "Thêm tài khoản nhân viên thành công!";
+            } else {
+                echo "Lỗi khi thêm tài khoản nhân viên: " . $insert_stmt->error;
+            }
+        }
+
+        $db->close();
+    }
+    ?>
+
+    <div class="container">
+        <h2>THÊM TÀI KHOẢN</h2>
+        <form id="employee-form">
+            <div class="form-group">
+                <label for="maNhanVien">Mã Nhân Viên:</label>
+                <input type="text" id="maNhanVien" name="maNhanVien" required>
+            </div>
+            <div class="form-group">
+                <label for="tenNhanVien">Tên Nhân Viên:</label>
+                <input type="text" id="tenNhanVien" name="tenNhanVien" required>
+            </div>
+            <div class="form-group">
+                <label for="soDienThoai">Số Điện Thoại:</label>
+                <input type="text" id="soDienThoai" name="soDienThoai" required>
+            </div>
+            <div class="form-group">
+                <label for="diaChi">Địa Chỉ:</label>
+                <input type="text" id="diaChi" name="diaChi" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="chucVu">Chức Vụ:</label>
+                <select id="chucVu" name="chucVu" required>
+                    <option value="Quản lý">Quản lý bếp</option>
+                    <option value="Nhân viên">Nhân viên phục vụ</option>
+					 <option value="Nhân viên">Đầu bếp</option>
+                </select>
+            </div>
+            <button type="button" onclick="submitForm()">Thêm Tài Khoản</button>
+        </form>
+        <div class="success-message" id="successMessage">
+            Thêm tài khoản thành công!
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            // Lấy giá trị từ các trường input
+            var maNhanVien = document.getElementById("maNhanVien").value;
+            var tenNhanVien = document.getElementById("tenNhanVien").value;
+            var soDienThoai = document.getElementById("soDienThoai").value;
+            var diaChi = document.getElementById("diaChi").value;
+            var email = document.getElementById("email").value;
+            var chucVu = document.getElementById("chucVu").value;
+
+            // Thực hiện lưu thông tin nhân viên ở đây (có thể sử dụng AJAX để gửi thông tin lên máy chủ)
+
+            // Hiển thị thông báo thêm thành công
+            document.getElementById("successMessage").style.display = "block";
+        }
+    </script>
+</body>
+</html>
