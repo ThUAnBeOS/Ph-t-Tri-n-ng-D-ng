@@ -20,13 +20,27 @@
                 </div>
                 <script src="script.js"></script>
                 </div>
+                <div class="boxtrai-bot">
+                    <?php
+                    include_once("View/vSanpham.php");
+                    $p = new viewSanpham();
+                    if(isset($_REQUEST["price"])){
+                        $p->viewProductPrice($_REQUEST["price"]);
+                    }elseif(isset($_REQUEST["txtSearch"])){
+                        $p->viewProductName($_REQUEST["txtSearch"]);
+                    }
+                    else{
+                    $p->viewAllProduct();
+                    }
+                    ?>
+                </div>
             </aside>
             <section>
                 <div class="boxphai">
                 <div class="login-form">
                 <table>
                     <h1 style="text-align: center;">Tài khoản</h1>
-                    <form action="" >
+                    <form action="" method="get">
                         <tr>
                             <td>Tên Đăng Nhập:</td>
                             <td><input type="text" name="name-dn"></td>
@@ -49,6 +63,37 @@
                        
                     </form>
                 </table>
+                </div>
+                <div class="boxphai-bot">
+                    <div class="search-form">
+                        <table style="text-align: center;">
+                            <h1 style="text-align: center;">Giá Tiền Món Ăn</h1>
+                            <p style="text-align: center;font-size: xx-small;">Giá tiền của mỗi món ăn dao động từ 5000 đồng-2000 đồng</p>
+                            <form action="" method="get">
+                            <tr>
+                                <td><input type="radio" name="price" id="price-1" value="5000"></td>
+                                <td><h1 style="text-align: center;">5000 VNĐ</h1></td>
+                                <td rowspan="7"><img src="image/chef.jpg" alt="" width="200px"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="price" id="price-2" value="10000"></td>
+                                <td><h1 style="text-align: center;">10000 VNĐ</h1></td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="price" id="price-3" value="15000"></td>
+                                <td><h1 style="text-align: center;">15000 VNĐ</h1></td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="price" id="price-4" value="20000"></td>
+                                <td><h1 style="text-align: center;">20000 VNĐ</h1></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><input type="submit" name="btn-price" value="Tìm món" class="submit"></td>
+                            </tr>
+                            </form>
+                           
+                        </table>
+                    </div>
                 </div>
                 </div>
             </section>

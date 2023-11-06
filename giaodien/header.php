@@ -24,7 +24,7 @@
             <div class="search">
             <form action="#" name="frmSearch" method="get">
             		<input type="text" name="txtSearch"  style="margin-right: 50px; margin-top: 30px; width: 250px; height: 30px;"/>
-                    <input type="submit" value="Search" style="margin-right: 50px; margin-top: 30px;"/>   
+                    <input type="submit" value="Search" name="btn-search" style="margin-right: 50px; margin-top: 30px;"/>   
                 	</form>
             </div>            
         </nav>     

@@ -20,7 +20,7 @@
                         <li><a href="">Nguyên Liệu</a></li>
                         <li><a href="">Đánh giá</a></li>
                         <li><a href="thongke.php">Thống kê</a></li>
-                        <li><a href="">Tài Khoản</a></li>
+                        <li><a href="user.php">Tài Khoản</a></li>
                     </ul>
             </div>            
         </nav>     

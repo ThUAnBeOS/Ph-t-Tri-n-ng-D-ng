@@ -164,10 +164,12 @@ section{
     height: 100%;
 }
 .login-form {
-    width: 300px;
+    width: 375px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
+    border-radius:  10px;
+    
 }
 .boxphai{
     margin-top: 30px;
@@ -179,13 +181,28 @@ section{
     border: 1px solid #ccc;
   }
   
-.login-form submit {
+.submit {
     width: 100%;
     margin-top: 10px;
     padding: 10px;
     background-color: #000;
     color: #fff;
     border: none;
+}
+.search-form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius:  10px;
+}
+.search-form input{
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.boxphai-bot{
+    margin-top: 50px;
 }
 
 
