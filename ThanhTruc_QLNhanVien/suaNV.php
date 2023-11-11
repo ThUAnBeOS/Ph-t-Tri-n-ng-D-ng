@@ -30,6 +30,7 @@ if(isset($_GET['ma_nhan_vien'])) {
         $dia_chi = $row["dia_chi"];
         $so_dien_thoai = $row["so_dien_thoai"];
         $chuc_vu = $row["chuc_vu"];
+		$password = $row["password"];
 
         // Kiểm tra thông tin (biểu mẫu) đã được cập nhật hay chưa
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -123,7 +124,18 @@ if(isset($_GET['ma_nhan_vien'])) {
 				
 				
 	<script>
-	
+	//Kiểm tra tên
+	function validateUppercase(inputId) {
+        var inputValue = document.getElementById(inputId).value;
+        var uppercasePattern = /[A-Z]/;
+
+        if (!uppercasePattern.test(inputValue) || inputValue[0] !== inputValue[0].toUpperCase()) {
+            alert("Vui lòng nhập chữ in hoa và chữ cái đầu tiên là in hoa.");
+            return false;
+        }
+        return true;
+    }
+	//Kiểm tra sđt
    function validatePhoneNumber() {
         var phoneInput = document.getElementById("so_dien_thoai").value;
        var phonePattern = /^\d{10}$/;
@@ -137,7 +149,7 @@ if(isset($_GET['ma_nhan_vien'])) {
     function validateForm() {
       
 		
-       return validatePhoneNumber();
+       return validatePhoneNumber() && validateUppercase("ho_ten");
 	   
     }
 </script>

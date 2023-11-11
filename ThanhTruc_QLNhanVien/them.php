@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dia_chi = $_POST["dia_chi"];
     $so_dien_thoai = $_POST["so_dien_thoai"];
     $chuc_vu = $_POST["chuc_vu"];
-    $password = $_POST["password"]; // Hash the password
+	$password = $_POST["password"];
 
     // Validate data (You should add more validation)
     if (empty($ma_nhan_vien) || empty($ho_ten) || empty($email) || empty($dia_chi) || empty($so_dien_thoai) || empty($chuc_vu) || empty($password)) {
@@ -99,10 +99,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 	
 	<script>
- 
-    function validatePhoneNumber() {
+	//Kiểm tra tên
+	function validateUppercase(inputId) {
+        var inputValue = document.getElementById(inputId).value;
+        var uppercasePattern = /[A-Z]/;
+
+        if (!uppercasePattern.test(inputValue) || inputValue[0] !== inputValue[0].toUpperCase()) {
+            alert("Vui lòng nhập chữ in hoa và chữ cái đầu tiên là in hoa.");
+            return false;
+        }
+        return true;
+    }
+	//Kiểm tra sđt
+   function validatePhoneNumber() {
         var phoneInput = document.getElementById("so_dien_thoai").value;
-        var phonePattern = /^\d{10}$/;
+       var phonePattern = /^\d{10}$/;
 
         if (!phonePattern.test(phoneInput)) {
             alert("Số điện thoại phải có đúng 10 chữ số.");
@@ -111,8 +122,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return true;
     }
     function validateForm() {
-        // You can add more validation functions here if needed
-       return validatePhoneNumber();
+      
+		
+       return validatePhoneNumber() &&  validateUppercase("ho_ten");
+	   
     }
 </script>
 
