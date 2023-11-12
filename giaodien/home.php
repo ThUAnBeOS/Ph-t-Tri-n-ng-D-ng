@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
     <div class="main">
@@ -22,6 +25,7 @@
                 </div>
                 <div class="boxtrai-bot">
                     <?php
+                    session_start();
                     include_once("View/vSanpham.php");
                     $p = new viewSanpham();
                     if(isset($_REQUEST["price"])){
@@ -38,31 +42,53 @@
             <section>
                 <div class="boxphai">
                 <div class="login-form">
-                <table>
-                    <h1 style="text-align: center;">Tài khoản</h1>
-                    <form action="" method="get">
-                        <tr>
-                            <td>Tên Đăng Nhập:</td>
-                            <td><input type="text" name="name-dn"></td>
-                        </tr>
-                        <tr>
-                            <td>Password:</td>
-                            <td><input type="text" name="password"></td>
-                        </tr>
-                        <tr>
-                            <td>Ghi nhớ tài khoản:</td>
-                            <td><input type="checkbox" name="remember_me" id="remember_me"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2"><a href="#">Quên mật khẩu?</a></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input type="submit" name="sub-xn" value="Xác Nhận" class="submit"></td>
-                        </tr>
-                       
-                    </form>
-                </table>
+                <?php
+                     session_start();
+                     if (isset($_SESSION['username'])) {
+                         echo "<b>Xin Chào         </b>";
+                         echo"<br>";
+                         echo"<i class='fa-regular fa-user fa-xs' style='color: black;'>".$_SESSION['username'] ."!</i>";
+                         echo "<br>";
+                         if($_SESSION['role'] === "admin"){
+                            echo "<a href='admin/index.php'style='text-decoration: none;color:black;'>Đăng nhập admin</a>";
+                         }
+                         else if($_SESSION['role'] === "user" && $_SESSION['chuc_vu'] === 'Phục vụ'){  
+                            echo "<a href='View/xulyphieuan.php' style='text-decoration: none;color:black;text-align:center;'>Xử lý trạng thái trên phiếu ăn</a>";
+                            echo"<br>";  
+                            echo "<a href='View/editpass.php' style='text-decoration: none;color:black;text-align:center;'>Cập Nhật Mật Khẩu</a>";
+                         }else{
+                            echo "<a href='View/editpass.php' style='text-decoration: none;color:black;text-align:center;'>Cập Nhật Mật Khẩu</a>";
+                         }
+                         echo"<br>";
+                         echo "<a href='Controller/dangxuat.php' style='text-decoration: none;color:black;text-align:center;'>Đăng xuất</a>";
+                     } else {
+                         echo"<table>
+                             <h1 style='text-align: center;'>Tài khoản</h1>
+                             <form action='Controller/xlydangnhap.php' method='post'>
+                                 <tr>
+                                     <td>Tên Đăng Nhập:</td>
+                                     <td><input type='text' name='username'></td>
+                                 </tr>
+                                 <tr>
+                                     <td>Password:</td>
+                                     <td><input type='password' name='password'></td>
+                                 </tr>
+                                 <tr>
+                                     <td>Ghi nhớ tài khoản:</td>
+                                     <td><input type='checkbox' name='remember_me' id='remember_me'></td>
+                                 </tr>
+                                 <tr>
+                                     <td colspan='2'><a href='View/quenmk.php'>Quên mật khẩu?</a></td>
+                                 </tr>
+                                 <tr>
+                                     <td></td>
+                                     <td><input type='submit' name='btn-dn' value='Đăng Nhập' class='submit'></td>
+                                 </tr>
+                             </form>
+                         </table>";
+                     }
+                ?>
+                
                 </div>
                 <div class="boxphai-bot">
                     <div class="search-form">
@@ -100,4 +126,4 @@
         </div>
     </div>
 </body>
-</html>
+</html> 

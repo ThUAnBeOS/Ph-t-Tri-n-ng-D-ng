@@ -12,6 +12,9 @@ header{
     height: 200px; 
     display: flex;
     border: 2px solid;
+    background-image: url(image/header.png);
+    background-repeat: no-repeat;
+    background-size: cover ;
 }
 .banner-left{
     width: 25%;
@@ -128,13 +131,14 @@ aside{
     float: left;
     background-color: rgb(254, 254, 254);
     padding-bottom: 20px;
-    border-right: 1px solid;
+    
 }
 section{
     width: 30%;
     float: left;
     background-color: rgb(254, 254, 254);
     padding-bottom: 20px;
+    margin-left: 5px;
     border-left: 1px solid;
 }
 /*slide
@@ -169,7 +173,10 @@ section{
     padding: 20px;
     border: 2px solid #ccc;
     border-radius:  10px;
-    
+
+}
+.login-form a{
+    text-align: center;
 }
 .boxphai{
     margin-top: 30px;
