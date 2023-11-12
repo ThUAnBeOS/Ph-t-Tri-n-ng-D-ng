@@ -6,6 +6,11 @@
     <title>Sửa Thông Tin Nhân Viên</title>
     <link rel="stylesheet" href="../style.css">
 </head>
+<style>
+    body{
+        background-color: antiquewhite;
+    }
+</style>
 <script>
 	
     function validatePhoneNumber() {
@@ -75,7 +80,7 @@
                 </style>
 <body>
     <?php
-        include_once("../header.php");
+        include_once("../header-chucnang.php");
     ?>
 <?php
 // Kết nối database
@@ -139,7 +144,7 @@ if(isset($_GET['ma_nhan_vien'])) {
 
                 if ($conn->query($update_sql) === TRUE) {
                     echo "<script>alert('Cập nhật thông tin thành công')</script>";
-                    echo header("refresh:0 ;url='DanhSachNhanVien.php'");
+                    echo header("refresh:0 ;url='../index.php?act=taikhoan'");
                 } else {
                     echo "Error updating record: " . $conn->error;
                 }
@@ -176,7 +181,7 @@ if(isset($_GET['ma_nhan_vien'])) {
                                 <option value='Quản lý' ".($chuc_vu == 'Quản lý' ? 'selected' : '').">Quản lý bếp</option>
                                 <option value='Nhân viên phục vụ' ".($chuc_vu == 'Nhân viên phục vụ' ? 'selected' : '').">Nhân viên phục vụ</option>
                                 <option value='Đầu bếp' ".($chuc_vu == 'Đầu bếp' ? 'selected' : '').">Đầu bếp</option>
-                                <option value='Đầu bếp' ".($chuc_vu == 'Nhân viên tập đoàn' ? 'selected' : '').">Đầu bếp</option>
+                                <option value='Nhân viên tập đoàn' ".($chuc_vu == 'Nhân viên tập đoàn' ? 'selected' : '').">Nhân viên tập đoàn</option>
                             </select>
                         </div>
                         <div class="form-group">

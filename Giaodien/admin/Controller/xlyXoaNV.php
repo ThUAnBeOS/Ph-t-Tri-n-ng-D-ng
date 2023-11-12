@@ -47,10 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_employee"])) {
 // Thực hiện truy vấn
     if ($conn->query($sql) === TRUE) {
     echo "<script>alert('Xóa nhân viên thành công')</script>";
-    echo header("refresh:0 ;url='../View/DanhSachNhanVien.php'");
+    echo header("refresh:0 ;url='../index.php?act=taikhoan'");
     } else {
         echo "<script>alert('Lỗi')</script>";
-        echo header("refresh:0 ;url='../View/DanhSachNhanVien.php'");
+        echo header("refresh:0 ;url='../index.php?act=taikhoan'");
     }
 
         // Đóng kết nối

@@ -54,7 +54,7 @@
 <body>
     <div>
         <?php
-            include_once("../header.php");
+            include_once("../header-chucnang.php");
         ?>
     </div>
 <center>

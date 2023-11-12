@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quản Lí Tài Khoản</title>
-    <link rel="stylesheet" href="../style.css">
 </head>
 <style>
     a{
@@ -18,15 +17,52 @@
     body{
         background-color: antiquewhite;
     }
+    table{
+      margin: 0 auto;
+      border: 1px;
+      width: 1300px;
+      height: auto;
+      text-align: center;
+      font-size: large;
+    }
+    table, th, td {
+  border: 1px solid black;
+    }
+
+  .btn-success{
+    background-color: #009933;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    }
+    .thead-dark{
+      background-color: #343a40;
+      color: #ffffff;
+      font-weight: 600;
+
+    }
+  .btn {
+    background-color: #009933;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background-color: dodgerblue;
+  }
+
+  .btn-danger {
+    background-color: #ff0000;
+  }
 </style>
 <body>
-    <div>
-        <?php
-            include_once("../header.php");
-        ?>
-    </div>
     <div class="sec">
-    <h1 style="text-align: center; color:cornflowerblue">Quản Lí Nhân Viên</h1>
+    <h1 style="text-align: center; color:black">Quản Lí Nhân Viên</h1>
 <?php
 	
     // Thông tin kết nối cơ sở dữ liệu
@@ -48,9 +84,9 @@
     $sql = "SELECT * FROM nhanvientapdoan where trang_thai like '%using%'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-        echo "<h1 style = 'text-align:center'><a href='them.php'>Thêm Nhân Viên</a></h1><br>";
+        echo "<h1 style = 'text-align:center'><a href='View/addNV.php' class='btn-success'>Thêm Nhân Viên</a></h1><br>";
         echo "<center><table border='1'>";
-        echo "<tr><th>Mã Nhân Viên</th><th>Họ Tên</th><th>Email</th><th>Địa Chỉ</th><th>Số Điện Thoại</th><th>Chức Vụ</th><th>Password</th><th>Role</th><th>Thao Tác</th></tr>";
+        echo "<tr><thead class='thead-dark'><th>Mã Nhân Viên</th><th>Họ Tên</th><th>Email</th><th>Địa Chỉ</th><th>Số Điện Thoại</th><th>Chức Vụ</th><th>Password</th><th>Role</th><th>Thao Tác</th></thead></tr>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . $row['ma_nhan_vien'] . "</td>";
@@ -61,14 +97,12 @@
             echo "<td>" . $row['chuc_vu'] . "</td>";
             echo "<td>" . $row['password'] . "</td>";
             echo "<td>" . $row['role'] . "</td>";
-            
-            
             echo "<td>";
             //echo "<button onclick=\"addFunction(" . $row["ma_nhan_vien"] . ")\">Thêm</button>";
             //echo "<button onclick=\"editFunction(" . $row["ma_nhan_vien"] . ")\">Sửa</button>";
-            echo "<a href='suaNV.php?ma_nhan_vien=" . $row["ma_nhan_vien"] . "'>Sửa</a>|";
+            echo "<a class='btn btn-primary' href='View/updateNV.php?ma_nhan_vien=" . $row["ma_nhan_vien"] . "'>Sửa</a>|";
 
-            echo "<a href='xoaNV.php?ma_nhan_vien=" . $row["ma_nhan_vien"] . "'>Xóa</a>";
+            echo "<a class='btn btn-danger' href='View/deleteNV.php?ma_nhan_vien=" . $row["ma_nhan_vien"] . "'>Xóa</a>";
             //echo "<button onclick=\"deleteFunction(" . $row["ma_nhan_vien"] . ")\">Xóa</button>";
             echo "</td>";
     

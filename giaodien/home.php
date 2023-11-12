@@ -51,12 +51,19 @@
                          echo "<br>";
                          if($_SESSION['role'] === "admin"){
                             echo "<a href='admin/index.php'style='text-decoration: none;color:black;'>Đăng nhập admin</a>";
+                            echo "<br>";
+                            echo "<a href='View/editpass.php' style='text-decoration: none;color:black;text-align:center;'>Cập Nhật Mật Khẩu</a>";
                          }
                          else if($_SESSION['role'] === "user" && $_SESSION['chuc_vu'] === 'Phục vụ'){  
                             echo "<a href='View/xulyphieuan.php' style='text-decoration: none;color:black;text-align:center;'>Xử lý trạng thái trên phiếu ăn</a>";
                             echo"<br>";  
                             echo "<a href='View/editpass.php' style='text-decoration: none;color:black;text-align:center;'>Cập Nhật Mật Khẩu</a>";
-                         }else{
+                         } else if($_SESSION['role'] === "user" && $_SESSION['chuc_vu'] === 'Đầu bếp'){  
+                            echo "<a href='View/xulyphieuan.php' style='text-decoration: none;color:black;text-align:center;'>Xác Nhận Số Lượng Phần Ăn</a>";
+                            echo"<br>";  
+                            echo "<a href='View/editpass.php' style='text-decoration: none;color:black;text-align:center;'>Cập Nhật Mật Khẩu</a>";
+                         }
+                         else{
                             echo "<a href='View/editpass.php' style='text-decoration: none;color:black;text-align:center;'>Cập Nhật Mật Khẩu</a>";
                          }
                          echo"<br>";

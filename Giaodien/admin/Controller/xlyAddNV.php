@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($conn->query($sql) === TRUE) {
             echo "<script>alert('Thêm dữ liệu thành công')</script>";
-			echo header("refresh:0 ;url='../View/DanhSachNhanVien.php'");
+			echo header("refresh:0 ;url='../index.php?act=taikhoan'");
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }

@@ -9,6 +9,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: antiquewhite;
         }
 
         .container {
@@ -75,7 +76,7 @@
 <body>
     <div>
         <?php
-            include_once("../header.php");
+            include_once("../header-chucnang.php");
         ?>
     </div>
     <div class="container">
@@ -87,7 +88,7 @@
             </div>
             <div class="form-group">
                 <label for="tenNhanVien">Tên Nhân Viên:</label>
-                <input type="text" id="ho_ten" name="ho_ten" required>
+                <input type="text" id="ho_ten" name="ho_ten"required>
             </div>
             <div class="form-group">
                 <label for="diaChi">Địa Chỉ:</label>

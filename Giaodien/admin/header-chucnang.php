@@ -32,13 +32,13 @@
         <nav>
             <div class="nav-menu">
             <ul class="menu">
-                        <li><a href="../index.php">Trang Chủ</a></li>
-                        <li><a href="index.php?act=monan">Món ăn</a></li>
+                        <li><a href="index.php">Trang Chủ</a></li>
+                        <li><a href="../index.php?act=monan">Món ăn</a></li>
                         <li><a href="">Thực Đơn</a> </li>
                         <li><a href="">Nguyên Liệu</a></li>
                         <li><a href="">Đánh giá</a></li>
-                        <li><a href="index.php?act=thongke">Thống kê</a></li>
-                        <li><a href="index.php?act=taikhoan">Tài Khoản</a></li>
+                        <li><a href="../index.php?act=thongke">Thống kê</a></li>
+                        <li><a href="../index.php?act=taikhoan">Tài Khoản</a></li>
                     </ul>
             </div>            
         </nav>     
